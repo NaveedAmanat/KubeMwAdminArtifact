@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-service
+  namespace: devolpment
+spec:
+  selector:
+    matchLabels:
+      app: admin-service
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: admin-service
+    spec:
+      containers:
+      - name: admin-service
+        image: navedamanat/admin-service:latest 
+
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8484
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-service
+  namespace: devolpment
+spec:
+  selector:
+    app: admin-service
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8484
