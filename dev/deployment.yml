@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: admin-service
-        image: navedamanat/admin-service:latest 
+        image:navedamanat/admin-service:v1
 
         imagePullPolicy: IfNotPresent
         ports:
